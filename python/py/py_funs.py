@@ -120,3 +120,15 @@ def get_df_midi(midi):
 def explode_chords_df(df_mid):
     df_expl = df_mid.assign(notes=df_mid['notes'].str.split(' ')).explode('notes')
     return(df_expl)
+
+
+def mido_midi_df(mid):
+    l = []
+    m = []
+    for i, track in enumerate(mid.tracks):
+        for msg in track:
+            l.append(vars(msg))
+            m.append(msg.is_meta)
+    df = pandas.DataFrame(l)
+    df['meta'] = m
+    return(df)
