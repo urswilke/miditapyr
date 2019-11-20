@@ -131,4 +131,16 @@ def mido_midi_df(mid):
             m.append(msg.is_meta)
     df = pandas.DataFrame(l)
     df['meta'] = m
-    return(df)
+    df['name'] = df['name'].astype('str')
+    # df['time_s'] = mido.tick2second(df['time'])
+    return df, mid.ticks_per_beat
+
+def get_midi_pitch_note_table():
+    b=pandas.DataFrame({'pitch': range(128)})
+    for i in range(128):
+        a = note.Note()
+        a.pitch.midi = i
+        b.loc[i,"note"] = a
+        b.loc[i,"name"] = a.name
+        b.loc[i,"nameWithOctave"] = a.nameWithOctave
+    return b
