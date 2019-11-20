@@ -133,6 +133,7 @@ def mido_midi_df(mid):
     df['meta'] = m
     df['name'] = df['name'].astype('str')
     # df['time_s'] = mido.tick2second(df['time'])
+    df['i_track'] = np.cumsum(df['type'].str.contains('track_name'))
     return df, mid.ticks_per_beat
 
 def get_midi_pitch_note_table():
