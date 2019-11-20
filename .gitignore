@@ -4,3 +4,5 @@
 .Ruserdata
 R/*.html
 python/jupyter/*.html
+R/.ipynb_checkpoints
+python/jupyter/.ipynb_checkpoints
