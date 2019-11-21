@@ -145,3 +145,37 @@ def get_midi_pitch_note_table():
         b.loc[i,"name"] = a.name
         b.loc[i,"nameWithOctave"] = a.nameWithOctave
     return b
+
+def df2mido_midifile(df, ticks_per_beat):
+    from mido import MetaMessage, Message, MidiFile, MidiTrack
+
+    outfile = MidiFile(ticks_per_beat=ticks_per_beat)
+    
+    track = MidiTrack()
+    # track.append(Message('program_change', program=12))
+    
+    for i in range(len(df)):
+        # meta messages:
+        if df.loc[i, 'type'] == 'track_name':
+            track = MidiTrack()
+            outfile.tracks.append(track)
+        elif df.loc[i, 'type'] == 'set_tempo':
+            track.append(MetaMessage('set_tempo', tempo = df.loc[i, 'tempo'].astype(int)))
+        elif df.loc[i, 'type'] == 'time_signature':
+            track.append(MetaMessage('time_signature',
+                                 numerator = df.loc[i, 'numerator'].astype(int), 
+                                 denominator = df.loc[i, 'denominator'].astype(int)))#, 
+    #                              clocks_per_click = df.loc[i, 'clocks_per_click'], 
+    #                              notated_32nd_notes_per_beat = df.loc(i, 'notated_32nd_notes_per_beat')))
+        elif df.loc[i, 'type'] == 'note_on':
+            track.append(Message('note_on', 
+                                 note=df.loc[i, 'note'].astype(int), 
+                                 velocity=df.loc[i, 'velocity'].astype(int), 
+                                 channel=df.loc[i, 'channel'].astype(int), 
+                                 time=df.loc[i, 'time'].astype(int)))
+        elif df.loc[i, 'type'] == 'note_off':
+            track.append(Message('note_off', 
+                                 note=df.loc[i, 'note'].astype(int), 
+                                 velocity=df.loc[i, 'velocity'].astype(int), 
+                                 time=df.loc[i, 'time'].astype(int)))
+    return outfile
