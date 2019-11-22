@@ -134,7 +134,10 @@ def mido_midi_df(mid):
     df['name'] = df['name'].astype('str')
     # df['time_s'] = mido.tick2second(df['time'])
     df['i_track'] = np.cumsum(df['type'].str.contains('track_name'))
-    return df, mid.ticks_per_beat
+    df_meta = df.query('meta').dropna(how = 'all', axis = 1).drop('meta', axis=1)
+    df_notes = df.query('not meta').dropna(how = 'all', axis = 1).drop('meta', axis=1)
+    
+    return df_meta, df_notes, mid.ticks_per_beat
 
 def get_midi_pitch_note_table():
     b=pandas.DataFrame({'pitch': range(128)})
