@@ -6,3 +6,4 @@ R/*.html
 python/jupyter/*.html
 R/.ipynb_checkpoints
 python/jupyter/.ipynb_checkpoints
+jupytext_tests/*
