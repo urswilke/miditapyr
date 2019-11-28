@@ -230,7 +230,7 @@ def music21_midi_df(mid):
     for i_track in range(len(mid.parts)):
         
         # i_track = 0
-        c = list(mid.parts[i_track].chordify())
+        c = list(mid.parts[i_track])
         c
         dfi = pandas.DataFrame({
             'i_track': i_track + 1,
@@ -245,16 +245,17 @@ def music21_midi_df(mid):
     df.rest = df.rest.replace(np.NaN, False)
 
     note_events = ~df['rest'] & ~df['meta']
+    chord_events = [isinstance(i, chord.Chord) for i in df.event]
     df.loc[note_events, 'notes'] = [list(i.pitches) for i in df.loc[note_events, 'event']]
-    df.loc[note_events, 'pitches'] = [list(p.midi for p in i) for i in df.loc[note_events, 'notes']]
+    df.loc[note_events, 'pitches'] = [list(p.midi for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
     # df.loc['pitch_classes'] = ''
-    df.loc[note_events, 'pitch_classes'] = [list(p.nameWithOctave for p in i) for i in df.loc[note_events, 'notes']]
-    df.pitch_classes = df.pitch_classes.replace(np.NaN, '')
+    df.loc[note_events, 'pitch_classes'] = [list(p.nameWithOctave for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
+    # df.pitch_classes = df.pitch_classes.replace(np.NaN, '')
 
     # df.loc[note_events, 'pitch_classes'] = [[' '.join(str(p.nameWithOctave)) for p in i] for i in df.loc[note_events, 'notes']]
     df.loc[note_events, 'vel'] = [i.volume.velocity for i in df.loc[note_events, 'event']]
-    df.loc[note_events, 'name'] = [i.commonName for i in df.loc[note_events, 'event']]
-    df.loc[note_events, 'quality'] = [i.quality for i in df.loc[note_events, 'event']]
+    df.loc[chord_events, 'name'] = [i.commonName for i in df.loc[chord_events, 'event']]
+    df.loc[chord_events, 'quality'] = [i.quality for i in df.loc[chord_events, 'event']]
     df['offset'] = [i.offset for i in df['event']]
     df['dur'] = [i.duration.quarterLength for i in df['event']]
     df.offset = df.offset.astype('float')
