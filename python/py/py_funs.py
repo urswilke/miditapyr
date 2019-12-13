@@ -12,6 +12,7 @@ def get_predominant_note(C_chroma):
     return(res)
 
 
+
 from music21 import *
 import pandas
 import numpy as np
@@ -145,8 +146,12 @@ def get_midi_pitch_note_table():
         a = note.Note()
         a.pitch.midi = i
         b.loc[i,"note"] = a
+        b.loc[i,"octave"] = a.octave
         b.loc[i,"name"] = a.name
         b.loc[i,"nameWithOctave"] = a.nameWithOctave
+         #following is necessary because otherwise, e.g.,  E-1 can have 2 meanings (E flat & octave: 1 or E & octave: -1)
+        b.loc[i,"nameWithOctave_unique"] = ''.join(map(str, [b.loc[i,"name"].replace('-', 'b'), int(b.loc[i,"octave"])]))
+    b.octave = b.octave.astype('int')
     return b
 
 def df2mido_midifile(df, ticks_per_beat):
