@@ -1,3 +1,5 @@
+# librosa:
+
 def get_predominant_note(C_chroma):
     df_note_indices = pandas.DataFrame({'index': C_chroma.argmax(axis=0)})
     # df_note_indices
@@ -11,7 +13,7 @@ def get_predominant_note(C_chroma):
     res = pandas.merge(df_note_indices, df_notes, how='left', on=['index'])
     return(res)
 
-
+# music21:
 
 from music21 import *
 import pandas
@@ -123,6 +125,62 @@ def explode_chords_df(df_mid):
     return(df_expl)
 
 
+def get_midi_pitch_note_table():
+    b=pandas.DataFrame({'pitch': range(128)})
+    for i in range(128):
+        a = note.Note()
+        a.pitch.midi = i
+        b.loc[i,"note"] = a
+        b.loc[i,"octave"] = a.octave
+        b.loc[i,"name"] = a.name
+        b.loc[i,"nameWithOctave"] = a.nameWithOctave
+         #following is necessary because otherwise, e.g.,  E-1 can have 2 meanings (E flat & octave: 1 or E & octave: -1)
+        b.loc[i,"nameWithOctave_unique"] = ''.join(map(str, [b.loc[i,"name"].replace('-', 'b'), int(b.loc[i,"octave"])]))
+    b.octave = b.octave.astype('int')
+    return b
+
+
+def music21_midi_df(mid):
+    df = pandas.DataFrame()
+    for i_track in range(len(mid.parts)):
+        
+        # i_track = 0
+        c = list(mid.parts[i_track])
+        c
+        dfi = pandas.DataFrame({
+            'i_track': i_track + 1,
+            'event': c,
+        #     'rest': [i.isRest for i in c]
+        })
+        dfi['meta'] = [all(x != "GeneralNote" for x in i.classes) for i in c]
+        df = df.append(dfi)
+        
+    df = df.reset_index()
+    df.loc[~df['meta'], 'rest'] = [i.isRest for i in df.loc[~df['meta'], 'event']]
+    df.rest = df.rest.replace(np.NaN, False)
+
+    note_events = ~df['rest'] & ~df['meta']
+    chord_events = [isinstance(i, chord.Chord) for i in df.event]
+    df.loc[note_events, 'notes'] = [list(i.pitches) for i in df.loc[note_events, 'event']]
+    df.loc[note_events, 'midi'] = [list(p.midi for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
+    # df.loc['pitch_classes'] = ''
+    df.loc[note_events, 'pitch'] = [list(p.nameWithOctave for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
+    # df.pitch_classes = df.pitch_classes.replace(np.NaN, '')
+
+    # df.loc[note_events, 'pitch_classes'] = [[' '.join(str(p.nameWithOctave)) for p in i] for i in df.loc[note_events, 'notes']]
+    df.loc[note_events, 'vel'] = [i.volume.velocity for i in df.loc[note_events, 'event']]
+    df.loc[chord_events, 'type'] = [i.commonName for i in df.loc[chord_events, 'event']]
+    df.loc[chord_events, 'quality'] = [i.quality for i in df.loc[chord_events, 'event']]
+    df['offset'] = [i.offset for i in df['event']]
+    df['dur'] = [i.duration.quarterLength for i in df['event']]
+    df.offset = df.offset.astype('float')
+    df.dur = df.dur.astype('float')
+    return df
+
+
+
+# mido:
+
 def mido_midi_df(mid):
     l = []
     m = []
@@ -140,19 +198,6 @@ def mido_midi_df(mid):
     
     return df_meta, df_notes, mid.ticks_per_beat
 
-def get_midi_pitch_note_table():
-    b=pandas.DataFrame({'pitch': range(128)})
-    for i in range(128):
-        a = note.Note()
-        a.pitch.midi = i
-        b.loc[i,"note"] = a
-        b.loc[i,"octave"] = a.octave
-        b.loc[i,"name"] = a.name
-        b.loc[i,"nameWithOctave"] = a.nameWithOctave
-         #following is necessary because otherwise, e.g.,  E-1 can have 2 meanings (E flat & octave: 1 or E & octave: -1)
-        b.loc[i,"nameWithOctave_unique"] = ''.join(map(str, [b.loc[i,"name"].replace('-', 'b'), int(b.loc[i,"octave"])]))
-    b.octave = b.octave.astype('int')
-    return b
 
 def df2mido_midifile(df, ticks_per_beat):
     from mido import MetaMessage, Message, MidiFile, MidiTrack
@@ -230,39 +275,3 @@ def df2mido_midifile(df_meta, df_notes, ticks_per_beat):
     return outfile
 
 
-def music21_midi_df(mid):
-    df = pandas.DataFrame()
-    for i_track in range(len(mid.parts)):
-        
-        # i_track = 0
-        c = list(mid.parts[i_track])
-        c
-        dfi = pandas.DataFrame({
-            'i_track': i_track + 1,
-            'event': c,
-        #     'rest': [i.isRest for i in c]
-        })
-        dfi['meta'] = [all(x != "GeneralNote" for x in i.classes) for i in c]
-        df = df.append(dfi)
-        
-    df = df.reset_index()
-    df.loc[~df['meta'], 'rest'] = [i.isRest for i in df.loc[~df['meta'], 'event']]
-    df.rest = df.rest.replace(np.NaN, False)
-
-    note_events = ~df['rest'] & ~df['meta']
-    chord_events = [isinstance(i, chord.Chord) for i in df.event]
-    df.loc[note_events, 'notes'] = [list(i.pitches) for i in df.loc[note_events, 'event']]
-    df.loc[note_events, 'midi'] = [list(p.midi for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
-    # df.loc['pitch_classes'] = ''
-    df.loc[note_events, 'pitch'] = [list(p.nameWithOctave for p in np.atleast_1d(i)) for i in df.loc[note_events, 'notes']]
-    # df.pitch_classes = df.pitch_classes.replace(np.NaN, '')
-
-    # df.loc[note_events, 'pitch_classes'] = [[' '.join(str(p.nameWithOctave)) for p in i] for i in df.loc[note_events, 'notes']]
-    df.loc[note_events, 'vel'] = [i.volume.velocity for i in df.loc[note_events, 'event']]
-    df.loc[chord_events, 'type'] = [i.commonName for i in df.loc[chord_events, 'event']]
-    df.loc[chord_events, 'quality'] = [i.quality for i in df.loc[chord_events, 'event']]
-    df['offset'] = [i.offset for i in df['event']]
-    df['dur'] = [i.duration.quarterLength for i in df['event']]
-    df.offset = df.offset.astype('float')
-    df.dur = df.dur.astype('float')
-    return df
