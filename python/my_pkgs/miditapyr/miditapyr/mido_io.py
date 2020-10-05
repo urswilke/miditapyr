@@ -1,4 +1,7 @@
 # mido:
+from pandas import DataFrame
+import numpy as np
+from mido import MidiTrack, MidiFile, MetaMessage, Message
 
 def mido_midi_df(mid):
     l = []
@@ -7,7 +10,7 @@ def mido_midi_df(mid):
         for msg in track:
             l.append(vars(msg))
             m.append(msg.is_meta)
-    df = pandas.DataFrame(l)
+    df = DataFrame(l)
     df['meta'] = m
     df['name'] = df['name'].astype('str')
     # df['time_s'] = mido.tick2second(df['time'])
