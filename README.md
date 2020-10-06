@@ -49,7 +49,7 @@ npm test
 
 Urs Wilke – [@UrsWilke](https://twitter.com/UrsWilke) – urs.wilke@gmail.com
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke/miditapyr/blob/master/LICENSE) for more information.
 
 [https://github.com/UrsWilke/miditapyr](https://github.com/urswilke/)
 
