@@ -16,6 +16,10 @@ can then also be read in in R via the package pyramidi. The dataframes then can 
 pip install miditapyr
 ```
 
+## Documentation
+
+Documentation can be found [here](https://miditapyr.readthedocs.io/)
+
 ## Usage example
 
 A usage example is shown in a [jupyter notebook in this repo](https://nbviewer.jupyter.org/github/urswilke/miditapyr/blob/master/notebooks/pyramidi_integration.ipynb)
