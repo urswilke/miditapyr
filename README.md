@@ -16,7 +16,7 @@ pip install miditapyr
 
 ## Usage example
 
-TODO
+A usage example is shown in a [jupyter notebook in this repo](https://github.com/urswilke/miditapyr/notebooks/pyramidi_integration.ipynb)
 <!-- A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
 
 _For more examples and usage, please refer to the [Wiki][wiki]._ -->
