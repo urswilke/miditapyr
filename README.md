@@ -18,7 +18,7 @@ pip install miditapyr
 
 ## Usage example
 
-A usage example is shown in a [jupyter notebook in this repo](https://github.com/urswilke/miditapyr/blob/master/notebooks/pyramidi_integration.ipynb)
+A usage example is shown in a [jupyter notebook in this repo](https://nbviewer.jupyter.org/github/urswilke/miditapyr/blob/master/notebooks/pyramidi_integration.ipynb)
 <!-- A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
 
 _For more examples and usage, please refer to the [Wiki][wiki]._ -->
@@ -49,7 +49,7 @@ npm test
 
 ## Meta
 
-Urs Wilke – [@UrsWilke](https://twitter.com/UrsWilke) – urs.wilke@gmail.com
+[Urs Wilke](https://twitter.com/UrsWilke)
 
 Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke/miditapyr/blob/master/LICENSE) for more information.
 
