@@ -3,6 +3,8 @@
 # Miditapyr
 > MIDI TAbulation in PYthon (and for R)
 
+**Work in progress!**
+
 This package can be used to read in midi files (via [mido](https://github.com/mido/mido)) in dataframes. These dataframes
 can then also be read in in R via the package pyramidi. The dataframes then can be easily modified and visualized. Finally they can be written back to midi files via mido.
 
