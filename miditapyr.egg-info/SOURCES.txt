@@ -1,0 +1,10 @@
+README.md
+setup.py
+miditapyr/__init__.py
+miditapyr/mido_io.py
+miditapyr.egg-info/PKG-INFO
+miditapyr.egg-info/SOURCES.txt
+miditapyr.egg-info/dependency_links.txt
+miditapyr.egg-info/not-zip-safe
+miditapyr.egg-info/requires.txt
+miditapyr.egg-info/top_level.txt
