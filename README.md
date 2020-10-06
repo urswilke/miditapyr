@@ -53,8 +53,6 @@ npm test
 
 Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke/miditapyr/blob/master/LICENSE) for more information.
 
-[https://github.com/UrsWilke/miditapyr](https://github.com/urswilke/)
-
 ## Contributing
 
 1. Fork it (<https://github.com/UrsWilke/miditapyr/fork>)
