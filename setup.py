@@ -13,7 +13,7 @@ setuptools.setup(
     description='Tabulate midi data in DataFrames and write back to midi files',
     long_description=README,
     long_description_content_type="text/markdown",
-    url='https://urssblogg.netlify.app/',
+    url='https://github.com/urswilke/miditapyr/',
     author='Urs Wilke',
     author_email='urs.wilke@gmail.com',
     license='MIT',
