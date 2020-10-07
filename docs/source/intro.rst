@@ -12,7 +12,7 @@ These dataframes can then
 also be read in in R via the package
 `pyramidi <https://github.com/urswilke/pyramidi>`_.
 
-Furthermore, they can be easily modified and visualized.
+Then they can be easily modified (using pandas / R dataframe methods) and visualized (using for instance altair / ggplot2).
 
 Limitations
 ***********
