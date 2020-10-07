@@ -1,16 +1,24 @@
 Metadata-Version: 2.1
 Name: miditapyr
-Version: 0.0.1
+Version: 0.0.0.9000
 Summary: Tabulate midi data in DataFrames and write back to midi files
-Home-page: https://urssblogg.netlify.app/
+Home-page: https://github.com/urswilke/miditapyr/
 Author: Urs Wilke
 Author-email: urs.wilke@gmail.com
 License: MIT
-Description: # Miditapyr
+Description: <!-- from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
+        
+        # Miditapyr
         > MIDI TAbulation in PYthon (and for R)
         
-        This package can be used to read in midi files (via [mido](https://github.com/mido/mido)) in dataframes. These dataframes
-        can then also be read in in R via the package pyramidi. The dataframes then can be easily modified and visualized. Finally they can be written back to midi files via mido.
+        **Work in progress!**
+        
+        This python package can be used to read in midi files (via
+        [mido](https://github.com/mido/mido)) in dataframes. These dataframes can then
+        also be read in in R via the package
+        [pyramidi](https://github.com/urswilke/pyramidi). The dataframes then can be
+        easily modified and visualized. Finally they can be written back to midi files
+        via mido.
         
         ![](header.png)
         
@@ -20,9 +28,13 @@ Description: # Miditapyr
         pip install miditapyr
         ```
         
+        ## Documentation
+        
+        Documentation can be found [here](https://miditapyr.readthedocs.io/)
+        
         ## Usage example
         
-        TODO
+        A usage example is shown in a [jupyter notebook in this repo](https://nbviewer.jupyter.org/github/urswilke/miditapyr/blob/master/notebooks/pyramidi_integration.ipynb)
         <!-- A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
         
         _For more examples and usage, please refer to the [Wiki][wiki]._ -->
@@ -53,11 +65,9 @@ Description: # Miditapyr
         
         ## Meta
         
-        Urs Wilke – [@UrsWilke](https://twitter.com/UrsWilke) – urs.wilke@gmail.com
+        [Urs Wilke](https://twitter.com/UrsWilke)
         
-        Distributed under the MIT license. See ``LICENSE`` for more information.
-        
-        [https://github.com/UrsWilke/miditapyr](https://github.com/urswilke/)
+        Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke/miditapyr/blob/master/LICENSE) for more information.
         
         ## Contributing
         
