@@ -52,7 +52,7 @@ npm test
 * 0.1.0
     * The first proper release
     * CHANGE: Rename `foo()` to `bar()` -->
-* 0.0.1
+* 0.0.0.9000
     * Work in progress
 
 ## Meta
