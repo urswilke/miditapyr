@@ -10,8 +10,8 @@ Welcome to miditapyr's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-intro
-miditapyr
+   intro
+   miditapyr
 
 Indices and tables
 ==================
