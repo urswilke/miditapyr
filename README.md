@@ -1,4 +1,4 @@
-<!-- from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
+<!-- template from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
 
 # Miditapyr
 > MIDI TAbulation in PYthon (and for R)
@@ -19,6 +19,18 @@ via mido.
 ```sh
 pip install miditapyr
 ```
+The related R package [pyramidi](https://github.com/urswilke/pyramidi) can be installed in R via:
+
+``` r
+## install remotes package if it's not already
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+## install dev version of pyramidi from github
+remotes::install_github("UrsWilke/pyramidi")
+```
+
 
 ## Documentation
 
