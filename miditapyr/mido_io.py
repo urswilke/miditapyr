@@ -3,14 +3,13 @@ import numpy as np
 from mido import MidiTrack, MidiFile, MetaMessage, Message
 
 def mido_midi_df(mid):
-    """Function to create a tuple of 2 dataframes and an integer containing the information parsed by mido.MidiFile()
+    """Function to create a tuple of 2 dataframes and an integer containing the
+    information parsed by mido.MidiFile()
 
-    :param mid: object returned by mido.MidiFile()
-    :type mid: mido.MidiFile
+    :param mid: object returned by mido.MidiFile() :type mid: mido.MidiFile
 
-    :return: a tuple of three dataframes, containing the meta / note information and mid.ticks_per_beat
-    :rtype: tuple
-    """
+    :return: a tuple of three dataframes, containing the meta / note information
+    and mid.ticks_per_beat :rtype: tuple """
     l = []
     m = []
     for i, track in enumerate(mid.tracks):
@@ -31,15 +30,15 @@ def mido_midi_df(mid):
 
 def df2mido_midifile(df_meta, df_notes, ticks_per_beat):
     """
-    Function to transform the tuple of 2 dataframes produced by the function mido_midi_df() into
-    a mido outfile object
+    Function to transform the tuple of 2 dataframes produced by the function
+    mido_midi_df() into a mido outfile object
 
-    :param df_meta: dataframe containing the meta event information returned by mido_midi_df()
-    :type df_meta: pandas.DataFrame
-    :param df_notes: dataframe containing the note information returned by mido_midi_df()
-    :type df_notes: pandas.DataFrame
-    :param ticks_per_beat: integer containing the ticks_per_beat information returned by mido_midi_df()
-    :type ticks_per_beat: integer
+    :param df_meta: dataframe containing the meta event information returned by
+    mido_midi_df() :type df_meta: pandas.DataFrame :param df_notes: dataframe
+    containing the note information returned by mido_midi_df() :type df_notes:
+    pandas.DataFrame :param ticks_per_beat: integer containing the
+    ticks_per_beat information returned by mido_midi_df() :type ticks_per_beat:
+    integer
 
     :return: outfile
     :rtype: mido.outfile object
@@ -86,17 +85,16 @@ def df2mido_midifile(df_meta, df_notes, ticks_per_beat):
 
 def df_2_midi(df_meta, df_notes, ticks_per_beat, file):
     """
-    Function to write midi dataframes returned by mido_midi_df() back to a midi file
-    a mido outfile object
+    Function to write midi dataframes returned by mido_midi_df() back to a midi
+    file a mido outfile object
 
-    :param df_meta: dataframe containing the meta event information returned by mido_midi_df()
-    :type df_meta: pandas.DataFrame
-    :param df_notes: dataframe containing the note information returned by mido_midi_df()
-    :type df_notes: pandas.DataFrame
-    :param ticks_per_beat: integer containing the ticks_per_beat information returned by mido_midi_df()
-    :type ticks_per_beat: integer
-    :param file: string containing the name of the midi file to be written
-    :type file: string
+    :param df_meta: dataframe containing the meta event information returned by
+    mido_midi_df() :type df_meta: pandas.DataFrame :param df_notes: dataframe
+    containing the note information returned by mido_midi_df() :type df_notes:
+    pandas.DataFrame :param ticks_per_beat: integer containing the
+    ticks_per_beat information returned by mido_midi_df() :type ticks_per_beat:
+    integer :param file: string containing the name of the midi file to be
+    written :type file: string
     """
     outfile = df2mido_midifile(df_meta, df_notes, ticks_per_beat)
     outfile.save(file)
