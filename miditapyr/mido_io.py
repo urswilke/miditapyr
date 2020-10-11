@@ -181,7 +181,6 @@ def df_to_midi(dfc, ticks_per_beat, filename):
     track = MidiTrack()
     outfile.tracks.append(track)
     for index, row in dfc.iterrows():
-        print(row)
         if row['meta'] == True:
             if row['msg']['type'] == 'track_name':
                 track = MidiTrack()
