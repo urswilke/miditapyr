@@ -190,3 +190,34 @@ def df_to_midi(dfc, ticks_per_beat, filename):
             track.append(Message(**row['msg']))
     outfile.save(filename)
 
+def compact_df(df, repair_reticulate_conversion = False):
+    """
+    Function to transform the dataframe returned by tidy_df() back to a format
+    as in the result of midi_to_df()
+    :param df: Dataframe returned by tidy_df()
+    :type dfc: pandas.DataFrame
+
+    :return: a dataframe, containing 3 columns:
+    i_track: the track number
+    msg: the meta / note information read by mido.MidiFile() in a list of dictionaries
+    meta: whether the event in 'msg' is a mido meta event
+    :rtype: pandas.DataFrame
+    """
+    dict_list = [v.dropna().to_dict() for k,v in df.drop(columns=['i_track', 'meta']).iterrows()]
+    # This is necessary because conversion the R package reticulate that
+    # converts dataframes from pandas to R converts integers to R numeric types.
+    # When converting back to pandas this would cause an error in mido when
+    # calling df_to_midi() on the result of this function...
+    if repair_reticulate_conversion == True:
+        for dicts in dict_list:
+            for key, value in dicts.items():
+                if type(value) == float:
+                    dicts[key] = int(value)
+
+    df_events = pd.DataFrame()
+    df_events['msg'] = dict_list
+    dfc2 = pd.concat([df[['i_track', 'meta']],
+                      df_events
+                     ],
+                     axis = 1)
+    return dfc2
