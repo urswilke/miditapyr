@@ -1,4 +1,5 @@
 from pandas import DataFrame
+import pandas as pd
 import numpy as np
 from mido import MidiTrack, MidiFile, MetaMessage, Message
 
