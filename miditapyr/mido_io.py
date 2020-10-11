@@ -160,3 +160,33 @@ def split_df(df):
 
     return df_meta, df_notes
 
+def df_to_midi(dfc, ticks_per_beat, filename):
+    """
+    Function to write midi dataframes returned by midi_to_df() back to a midi
+    file
+
+    :param dfc: dataframe containing the meta event information returned by
+    midi_to_df()
+    :type dfc: pandas.DataFrame
+    :param ticks_per_beat: integer containing the
+    ticks_per_beat information returned by mido.MidiFile()
+    :type ticks_per_beat: integer
+    :param filename: string containing the name of the midi file to be
+    written
+    :type filename: string
+    """
+    outfile = MidiFile()
+    outfile.ticks_per_beat = ticks_per_beat
+    track = MidiTrack()
+    outfile.tracks.append(track)
+    for index, row in dfc.iterrows():
+        print(row)
+        if row['meta'] == True:
+            if row['msg']['type'] == 'track_name':
+                track = MidiTrack()
+                outfile.tracks.append(track)
+            track.append(MetaMessage(**row['msg']))
+        else:
+            track.append(Message(**row['msg']))
+    outfile.save(filename)
+
