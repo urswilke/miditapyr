@@ -98,3 +98,30 @@ def df_2_midi(df_meta, df_notes, ticks_per_beat, file):
     """
     outfile = df2mido_midifile(df_meta, df_notes, ticks_per_beat)
     outfile.save(file)
+
+
+
+
+
+
+
+def midi_to_df(mid):
+    """Function to create a dataframe containing the
+    information parsed by mido.MidiFile()
+
+    :param mid: object returned by mido.MidiFile()
+    :type mid: mido.MidiFile
+
+    :return: a dataframe, containing 3 columns:
+    i_track: the track number
+    msg: the meta / note information read by mido.MidiFile() in a list of dictionaries
+    meta: whether the event in 'msg' is a mido meta event
+    :rtype: pandas.DataFrame """
+    l = []
+    for i_track, track in enumerate(mid.tracks):
+        for msg in track:
+            l.append({**{'i_track': i_track}, **{'meta': msg.is_meta}, **{'msg': vars(msg)}})
+    df = pd.DataFrame(l)
+    # df.ticks_per_beat = mid.ticks_per_beat
+
+    return df
