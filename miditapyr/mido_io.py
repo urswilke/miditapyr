@@ -125,3 +125,24 @@ def midi_to_df(mid):
     # df.ticks_per_beat = mid.ticks_per_beat
 
     return df
+
+
+def tidy_df(dfc):
+    """
+    Function to transform the dataframe returned by midi_to_df() in a tidy
+    format (cf. https://r4ds.had.co.nz/tidy-data.html)
+    :param dfc: Dataframe returned by midi_to_df()
+    :type dfc: pandas.DataFrame
+
+    :return: a dataframe where each key in the dicts in the 'msg' column of
+    midi_to_df(mid) is stored in a separate column
+    i_track: the track number
+    meta: whether the event in 'msg' is a mido meta event
+    :rtype: pandas.DataFrame
+    """
+    df = pd.concat([dfc[['i_track', 'meta']],
+                    pd.DataFrame(list(dfc['msg']))
+                    ],
+                   axis = 1)
+    return df
+
