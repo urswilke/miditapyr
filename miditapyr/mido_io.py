@@ -146,3 +146,17 @@ def tidy_df(dfc):
                    axis = 1)
     return df
 
+def split_df(df):
+    """Function to create a tuple of 2 dataframes containing the
+    information parsed by mido.MidiFile()
+
+    :param df: dataframe returned by tidy_df()
+    :type dfc: pandas.DataFrame
+
+    :return: a tuple of 2 dataframes, containing the meta / note information
+    :rtype: tuple """
+    df_meta = df.query('meta').dropna(how = 'all', axis = 1)#.drop('meta', axis=1)
+    df_notes = df.query('not meta').dropna(how = 'all', axis = 1)#.drop('meta', axis=1)
+
+    return df_meta, df_notes
+
