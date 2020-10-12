@@ -216,8 +216,8 @@ def compact_df(df, repair_reticulate_conversion = False):
 
     df_events = pd.DataFrame()
     df_events['msg'] = dict_list
-    dfc2 = pd.concat([df[['i_track', 'meta']],
-                      df_events
+    dfc2 = pd.concat([df[['i_track', 'meta']].reset_index(drop=True),
+                      df_events.reset_index(drop=True)
                      ],
                      axis = 1)
     return dfc2
