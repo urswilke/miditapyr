@@ -17,4 +17,4 @@ Then they can be easily modified (using pandas / R dataframe methods) and visual
 Limitations
 ***********
 
-For the moment only note_on / note_off events are treated. TODO: pitch wheel etc.
+Midi files come in various formats. Miditapyr does not work for all files.
