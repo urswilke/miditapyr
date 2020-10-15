@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: miditapyr
-Version: 0.0.0.9000
+Version: 0.0.1
 Summary: Tabulate midi data in DataFrames and write back to midi files
 Home-page: https://github.com/urswilke/miditapyr/
 Author: Urs Wilke
 Author-email: urs.wilke@gmail.com
 License: MIT
-Description: <!-- from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
+Description: <!-- template from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
         
         # Miditapyr
         > MIDI TAbulation in PYthon (and for R)
@@ -27,6 +27,18 @@ Description: <!-- from here: https://dbader.org/blog/write-a-great-readme-for-yo
         ```sh
         pip install miditapyr
         ```
+        The related R package [pyramidi](https://github.com/urswilke/pyramidi) can be installed in R via:
+        
+        ``` r
+        ## install remotes package if it's not already
+        if (!requireNamespace("remotes", quietly = TRUE)) {
+          install.packages("remotes")
+        }
+        
+        ## install dev version of pyramidi from github
+        remotes::install_github("UrsWilke/pyramidi")
+        ```
+        
         
         ## Documentation
         
@@ -50,18 +62,7 @@ Description: <!-- from here: https://dbader.org/blog/write-a-great-readme-for-yo
         
         ## Release History
         
-        <!-- * 0.2.1
-            * CHANGE: Update docs (module code remains unchanged)
-        * 0.2.0
-            * CHANGE: Remove `setDefaultXYZ()`
-            * ADD: Add `init()`
-        * 0.1.1
-            * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-        * 0.1.0
-            * The first proper release
-            * CHANGE: Rename `foo()` to `bar()` -->
-        * 0.0.1
-            * Work in progress
+        Please find the changelog here: [CHANGELOG.md](https://github.com/urswilke/miditapyr/blob/master/CHANGELOG.md)
         
         ## Meta
         
