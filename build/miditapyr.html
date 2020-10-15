@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>miditapyr package &mdash; miditapyr 0.0.0.9000 documentation</title>
+  <title>miditapyr package &mdash; miditapyr 0.0.1 documentation</title>
   
 
   
@@ -190,49 +190,6 @@ dataframe of the same format. This dataframe contains these columns:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="miditapyr.mido_io.df2mido_midifile">
-<code class="sig-prename descclassname">miditapyr.mido_io.</code><code class="sig-name descname">df2mido_midifile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_meta</span></em>, <em class="sig-param"><span class="n">df_notes</span></em>, <em class="sig-param"><span class="n">ticks_per_beat</span></em><span class="sig-paren">)</span><a class="headerlink" href="#miditapyr.mido_io.df2mido_midifile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to transform the tuple of 2 dataframes produced by the function
-mido_midi_df() into a mido outfile object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df_meta</strong> – dataframe containing the meta event information returned by</p>
-</dd>
-</dl>
-<p>mido_midi_df() :type df_meta: pandas.DataFrame :param df_notes: dataframe
-containing the note information returned by mido_midi_df() :type df_notes:
-pandas.DataFrame :param ticks_per_beat: integer containing the
-ticks_per_beat information returned by mido_midi_df() :type ticks_per_beat:
-integer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>outfile</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>mido.outfile object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="miditapyr.mido_io.df_2_midi">
-<code class="sig-prename descclassname">miditapyr.mido_io.</code><code class="sig-name descname">df_2_midi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_meta</span></em>, <em class="sig-param"><span class="n">df_notes</span></em>, <em class="sig-param"><span class="n">ticks_per_beat</span></em>, <em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#miditapyr.mido_io.df_2_midi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to write midi dataframes returned by mido_midi_df() back to a midi
-file a mido outfile object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df_meta</strong> – dataframe containing the meta event information returned by</p>
-</dd>
-</dl>
-<p>mido_midi_df() :type df_meta: pandas.DataFrame :param df_notes: dataframe
-containing the note information returned by mido_midi_df() :type df_notes:
-pandas.DataFrame :param ticks_per_beat: integer containing the
-ticks_per_beat information returned by mido_midi_df() :type ticks_per_beat:
-integer :param file: string containing the name of the midi file to be
-written :type file: string</p>
-</dd></dl>
-
-<dl class="py function">
 <dt id="miditapyr.mido_io.df_to_midi">
 <code class="sig-prename descclassname">miditapyr.mido_io.</code><code class="sig-name descname">df_to_midi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dfc</span></em>, <em class="sig-param"><span class="n">ticks_per_beat</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#miditapyr.mido_io.df_to_midi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to write midi dataframes returned by midi_to_df() back to a midi
@@ -273,22 +230,6 @@ dataframe of the same format. This dataframe contains these columns:</p>
 <li><p><strong>meta</strong>: whether the event in ‘msg’ is a <a class="reference external" href="https://mido.readthedocs.io/en/latest/midi_files.html#meta-messages">mido meta event</a></p></li>
 </ul>
 </div></blockquote>
-</dd></dl>
-
-<dl class="py function">
-<dt id="miditapyr.mido_io.mido_midi_df">
-<code class="sig-prename descclassname">miditapyr.mido_io.</code><code class="sig-name descname">mido_midi_df</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#miditapyr.mido_io.mido_midi_df" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to create a tuple of 2 dataframes and an integer containing the
-information parsed by mido.MidiFile()</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>mid</strong> – object returned by mido.MidiFile() :type mid: mido.MidiFile</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a tuple of three dataframes, containing the meta / note information</p>
-</dd>
-</dl>
-<p>and mid.ticks_per_beat :rtype: tuple</p>
 </dd></dl>
 
 <dl class="py function">
