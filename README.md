@@ -1,4 +1,6 @@
 <!-- template from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
+[![Travis build](https://api.travis-ci.org/urswilke/miditapyr.svg?branch=master)](https://travis-ci.org/urswilke/miditapyr)
+
 
 # Miditapyr
 > MIDI TAbulation in PYthon (and for R)
