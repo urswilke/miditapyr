@@ -33,3 +33,6 @@ install:
 
 script:
 - pytest $PACKAGENAME
+
+notifications:
+  email: false
