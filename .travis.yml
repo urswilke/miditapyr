@@ -10,7 +10,7 @@ python:
 env:
   global:
     # List package dependencies for conda
-    - CONDA_DEPS="pytest numpy pandas mido"
+    - CONDA_DEPS="pytest numpy pandas"
     # package name for test invocation
     - PACKAGENAME="miditapyr"
 
@@ -26,6 +26,7 @@ before_install:
 - conda info -a
 - conda create -n testenv python=$TRAVIS_PYTHON_VERSION
 - source activate testenv
+- pip install mido
 - conda install $CONDA_DEPS
 
 install:
