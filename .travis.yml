@@ -3,6 +3,10 @@ language: python
 # sudo false implies containerized builds
 sudo: false
 
+os:
+  - linux
+  - osx
+
 python:
   - 3.5
   - 3.6
