@@ -1,4 +1,5 @@
 <!-- template from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
+[![PyPI version](https://badge.fury.io/py/miditapyr.svg)](https://badge.fury.io/py/miditapyr) 
 [![Travis build](https://api.travis-ci.org/urswilke/miditapyr.svg?branch=master)](https://travis-ci.org/urswilke/miditapyr)
 
 
