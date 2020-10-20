@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from mido import MidiTrack, MidiFile, MetaMessage, Message
+import pathlib
 
 def midi_to_df(mid):
     """Function to create a dataframe containing the
@@ -131,3 +132,8 @@ def compact_df(df, repair_reticulate_conversion = False):
                      ],
                      axis = 1)
     return dfc2
+
+
+def get_test_midi_file():
+    PACKAGEDIR = pathlib.Path(__file__).parent.absolute()
+    return str(PACKAGEDIR / 'data' / 'test_midi_file.mid')
