@@ -2,8 +2,10 @@ language: python
 python:
 - "3.6"
 
-before_install:
-  - pip install mido
+install: pip install -e .
+
+# before_install:
+#   - pip install mido
 
 cache: pip
 script:
