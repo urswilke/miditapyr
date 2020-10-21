@@ -1,1 +1,4 @@
 bluepy
+mido
+pandas
+numpy

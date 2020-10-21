@@ -1,6 +1,11 @@
 import pathlib
 from setuptools import setup, find_packages
 
+# frm here:
+# https://github.com/avinassh/rockstar/blob/master/setup.py#L11,#L19
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 
@@ -18,7 +23,8 @@ setup(
     author_email='urs.wilke@gmail.com',
     license='MIT',
     packages=find_packages(exclude=['tests*']),
-    install_requires=find_packages(where='.'),
+    # install_requires=find_packages(where='.'),
+    install_requires=requirements,
     package_dir={'miditapyr': 'miditapyr'},
     package_data={'miditapyr': ['data/*']},
     include_package_data=True,

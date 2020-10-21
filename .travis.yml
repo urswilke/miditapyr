@@ -2,12 +2,11 @@ language: python
 python:
 - "3.6"
 
-install: pip install -e .
+install:
+  - pip install  .
+  - pip install -r requirements.txt
 
-before_install:
-  - pip install mido
-  - pip install pandas
-  - pip install numpy
+# before_install:
 
 # cache: pip
 script:
