@@ -11,3 +11,6 @@ install:
 # cache: pip
 script:
   - pytest
+
+after_success:
+  - codecov
