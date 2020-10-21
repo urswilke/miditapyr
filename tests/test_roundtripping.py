@@ -1,5 +1,7 @@
 # import mido
 import pytest
+import pandas as pd
+import mido
 import miditapyr.mido_io as mt
 
 def test_roundtripping():
