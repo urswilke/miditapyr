@@ -1,5 +1,6 @@
-import mido
-import miditapyr as mt
+# import mido
+import pytest
+import miditapyr.mido_io as mt
 
 def test_roundtripping():
     # mido_mid_file = mido.MidiFile(mt.get_test_midi_file())

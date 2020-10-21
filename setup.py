@@ -17,7 +17,7 @@ setup(
     author='Urs Wilke',
     author_email='urs.wilke@gmail.com',
     license='MIT',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests*']),
     install_requires=find_packages(where='.'),
     package_dir={'miditapyr': 'miditapyr'},
     package_data={'miditapyr': ['data/*']},
