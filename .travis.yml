@@ -4,8 +4,10 @@ python:
 
 install: pip install -e .
 
-# before_install:
-#   - pip install mido
+before_install:
+  - pip install mido
+  - pip install pandas
+  - pip install numpy
 
 # cache: pip
 script:
