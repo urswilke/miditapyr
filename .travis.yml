@@ -7,6 +7,6 @@ install: pip install -e .
 # before_install:
 #   - pip install mido
 
-cache: pip
+# cache: pip
 script:
   - pytest
