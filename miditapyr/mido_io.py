@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from mido import MidiTrack, MidiFile, MetaMessage, Message
-import pathlib
+import io, pkgutil
+import os, sys
 
 def midi_to_df(mid):
     """Function to create a dataframe containing the
@@ -134,6 +135,18 @@ def compact_df(df, repair_reticulate_conversion = False):
     return dfc2
 
 
-def get_test_midi_file():
-    PACKAGEDIR = pathlib.Path(__file__).parent.absolute()
-    return str(PACKAGEDIR / 'data' / 'test_midi_file.mid')
+def get_test_midi_file(as_string=False):
+    # midi_file = pkgutil.get_data(__name__, 'data/test_midi_file.mid') mostly
+    # inspired by
+    # https://stackoverflow.com/questions/5003755/how-to-use-pkgutils-get-data-with-csv-reader-in-python :
+    package = 'miditapyr'
+    loader = pkgutil.get_loader(package)
+    mod = sys.modules.get(package) or loader.load_module(package)
+    midi_file = os.path.dirname(mod.__file__) + '/data/test_midi_file.mid'
+    mido_midi_file = MidiFile(midi_file)
+    if as_string == False:
+        result = mido_midi_file
+    else:
+        result = midi_file
+    return result
+    # return midi_file
