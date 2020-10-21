@@ -19,7 +19,8 @@ setup(
     license='MIT',
     packages=find_packages(),
     install_requires=find_packages(where='.'),
-    package_dir={
-        '': '.',
-    },
+    package_dir={'miditapyr': 'miditapyr'},
+    package_data={'miditapyr': ['data/*']},
+    include_package_data=True,
+    # data_files=[('miditapyr/data', ['test_midi_file.mid'])],
     zip_safe=False)
