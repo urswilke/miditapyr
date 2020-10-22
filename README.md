@@ -24,17 +24,8 @@ via mido.
 ```sh
 pip install miditapyr
 ```
-The related R package [pyramidi](https://github.com/urswilke/pyramidi) can be installed in R via:
 
-``` r
-## install remotes package if it's not already
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
-}
-
-## install dev version of pyramidi from github
-remotes::install_github("UrsWilke/pyramidi")
-```
+If you are an R user check out the related R package [pyramidi](https://github.com/urswilke/pyramidi).
 
 
 ## Documentation
