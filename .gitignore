@@ -4,3 +4,4 @@ docs/source/_static
 docs/source/_templates
 playground/*
 *.pyc
+.pytest_cache
