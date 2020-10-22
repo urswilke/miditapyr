@@ -17,7 +17,7 @@ install:
 # cache: pip
 script:
   # - pytest
-    - pytest --cov-report xml --cov=tests/
+    - pytest --cov-report html:htmlcov --cov-report --cov=.
 
 after_success:
   - codecov
