@@ -3,7 +3,7 @@
 [![Travis build](https://api.travis-ci.org/urswilke/miditapyr.svg?branch=master)](https://travis-ci.org/urswilke/miditapyr)
 ![GitHub](https://img.shields.io/github/license/urswilke/miditapyr)
 [![codecov](https://img.shields.io/codecov/c/github/urswilke/miditapyr/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/urswilke/miditapyr)
-
+[![Documentation Status](https://readthedocs.org/projects/miditapyr/badge/?version=latest)](https://miditapyr.readthedocs.io/en/latest/?badge=latest)
 
 # Miditapyr
 > MIDI TAbulation in PYthon (and for R)
