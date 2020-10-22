@@ -15,7 +15,7 @@ install:
 # cache: pip
 script:
   # - pytest
-    - pytest --cov-report term --cov=investpy tests/
+    - pytest --cov-report term --cov=tests/
 
 after_success:
   - codecov
