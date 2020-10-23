@@ -21,4 +21,4 @@ script:
 
 after_success:
   # - codecov
-  - bash <(curl -s https://codecov.io/bash) -v
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
