@@ -20,5 +20,5 @@ script:
     - pytest --cov-report xml --cov=.
 
 after_success:
-  - codecov
-  # - bash <(curl -s https://codecov.io/bash)
+  # - codecov
+  - bash <(curl -s https://codecov.io/bash)
