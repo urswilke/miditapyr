@@ -1,6 +1,6 @@
 <!-- template from here: https://dbader.org/blog/write-a-great-readme-for-your-github-project -->
 
-# Miditapyr <a href='https://dplyr.tidyverse.org'><img src='docs/source/hex-miditapyr.png' align="right" height="160" /></a>
+# Miditapyr <a href='https://miditapyr.readthedocs.io/'><img src='docs/source/hex-miditapyr.png' align="right" height="160" /></a>
 > MIDI TAbulation in PYthon (and for R)
 
 
