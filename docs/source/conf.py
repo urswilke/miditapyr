@@ -53,5 +53,15 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# add logo as explained here:
+# https://stackoverflow.com/questions/59215996/how-to-add-a-logo-to-my-readthedocs-logo-rendering-at-0px-wide
+html_logo = 'tapir_octagon.png'
+html_theme_options = {
+    'height': '60px',
+    'logo_only': False,
+    'display_version': False,
+}
+
+
 # from here: https://github.com/readthedocs/readthedocs.org/issues/2569
 master_doc = 'index'
