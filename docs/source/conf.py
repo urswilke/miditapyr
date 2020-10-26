@@ -55,7 +55,7 @@ html_static_path = ['_static']
 
 # add logo as explained here:
 # https://stackoverflow.com/questions/59215996/how-to-add-a-logo-to-my-readthedocs-logo-rendering-at-0px-wide
-html_logo = 'tapir_octagon.png'
+html_logo = 'tapir_rect.png'
 html_theme_options = {
     'logo_only': False,
     'display_version': False,
