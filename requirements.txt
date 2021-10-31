@@ -2,3 +2,5 @@ bluepy
 mido
 pandas
 numpy
+pytest
+
