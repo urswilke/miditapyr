@@ -1,4 +1,3 @@
-bluepy
 mido
 pandas
 numpy
