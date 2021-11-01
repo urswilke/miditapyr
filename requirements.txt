@@ -2,4 +2,3 @@ mido
 pandas
 numpy
 pytest
-docutils<0.18
