@@ -20,5 +20,5 @@ formats: all
 python:
   version: 3.6
   setup_py_install: true
-  # install:
-  #   - requirements: requirements.txt
+  install:
+    - requirements: requirements.txt
