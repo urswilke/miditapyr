@@ -11,7 +11,9 @@ Welcome to miditapyr's documentation!
    :caption: Contents:
 
    intro
-   notebooks/pyramidi_integration
+
+   pyramidi_integration
+
    miditapyr
 
 Indices and tables
