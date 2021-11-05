@@ -42,9 +42,7 @@ A usage example is shown in a [jupyter notebook in this repo](https://miditapyr.
 
 Please find the changelog here: [CHANGELOG.md](https://github.com/urswilke/miditapyr/blob/master/CHANGELOG.md)
 
-## Meta
-
-[Urs Wilke](https://twitter.com/UrsWilke)
+## License
 
 Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke/miditapyr/blob/master/LICENSE) for more information.
 
