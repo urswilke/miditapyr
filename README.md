@@ -4,13 +4,10 @@
 > MIDI TAbulation in PYthon (and for R)
 
 
-[![PyPI version](https://badge.fury.io/py/miditapyr.svg)](https://badge.fury.io/py/miditapyr)
-[![Travis build](https://api.travis-ci.org/urswilke/miditapyr.svg?branch=master)](https://travis-ci.org/urswilke/miditapyr)
-![GitHub](https://img.shields.io/github/license/urswilke/miditapyr)
+[![PyPI version](https://badge.fury.io/py/miditapyr.svg)](https://pypi.org/project/miditapyr/)
+![GitHub](LICENSE)
 [![codecov](https://img.shields.io/codecov/c/github/urswilke/miditapyr/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/urswilke/miditapyr)
 [![Documentation Status](https://readthedocs.org/projects/miditapyr/badge/?version=latest)](https://miditapyr.readthedocs.io/en/latest/?badge=latest)
-
-
 ![gh actions tests](https://github.com/urswilke/miditapyr/actions/workflows/ci.yml/badge.svg)
 
 **Work in progress!**
@@ -39,19 +36,8 @@ Documentation can be found [here](https://miditapyr.readthedocs.io/)
 
 ## Usage example
 
-A usage example is shown in a [jupyter notebook in this repo](https://nbviewer.jupyter.org/github/urswilke/miditapyr/blob/master/notebooks/pyramidi_integration.ipynb)
-<!-- A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+A usage example is shown in a [jupyter notebook in this repo](https://miditapyr.readthedocs.io/en/latest/pyramidi_integration.html)
 
-_For more examples and usage, please refer to the [Wiki][wiki]._ -->
-
-<!-- ## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
-``` -->
 
 ## Release History
 
@@ -71,10 +57,3 @@ Distributed under the MIT license. See [``LICENSE``](https://github.com/urswilke
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
-<!-- Markdown link & img dfn's -->
-<!-- [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki -->
