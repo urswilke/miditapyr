@@ -49,9 +49,9 @@ def tidy_df(dfc):
 
     """
 
+    df_unnest_wide = pd.DataFrame(list(dfc['msg']))
     df = pd.concat([dfc[['i_track', 'meta']],
-                    pd.DataFrame(list(dfc['msg']))
-                    ],
+                    df_unnest_wide],
                    axis = 1)
     return df
 
