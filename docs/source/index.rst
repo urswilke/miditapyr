@@ -12,7 +12,7 @@ Welcome to miditapyr's documentation!
 
    intro
 
-   pyramidi_integration
+   notebooks/usage_example
 
    miditapyr
 
