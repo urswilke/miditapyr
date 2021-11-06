@@ -8,6 +8,7 @@
 [![codecov](https://img.shields.io/codecov/c/github/urswilke/miditapyr/master.svg?style=flat-square&label=Codecov+Coverage)](https://codecov.io/gh/urswilke/miditapyr)
 [![Documentation Status](https://readthedocs.org/projects/miditapyr/badge/?version=latest)](https://miditapyr.readthedocs.io/en/latest/?badge=latest)
 ![gh actions tests](https://github.com/urswilke/miditapyr/actions/workflows/ci.yml/badge.svg)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 **Work in progress!**
 
