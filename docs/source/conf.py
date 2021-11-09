@@ -33,8 +33,7 @@ release = '0.0.1'
 extensions = [
     "nbsphinx", 
     'sphinx.ext.autodoc',
-     "altair.sphinxext.altairplot"
-]
+    ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -65,6 +64,10 @@ html_theme_options = {
     'display_version': False,
 }
 
+# from here: https://github.com/readthedocs/sphinx_rtd_theme/issues/117#issuecomment-41571653
+def setup(app):
+#    app.add_javascript("custom.js")
+   app.add_stylesheet("custom.css")
 
 # from here: https://github.com/readthedocs/readthedocs.org/issues/2569
 master_doc = 'index'
