@@ -18,7 +18,7 @@ import miditapyr
 # -- Project information -----------------------------------------------------
 
 project = 'miditapyr'
-copyright = '2020, Urs Wilke'
+copyright = '2021, Urs Wilke'
 author = 'Urs Wilke'
 
 # The full version, including alpha/beta/rc tags
