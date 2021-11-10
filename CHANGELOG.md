@@ -1,5 +1,18 @@
 ## CHANGELOG
 
+* **0.0.2**
+    * add codecov gh action
+    * add ci workflow gh action
+    * add badges
+    * include notebook in readthedocs
+    * add hex logo
+    * add midi file "miditapyr/data/test_midi_file.mid" included in package
+    * add function get_test_midi_file() loading "test_midi_file.mid"
+    * add requirements.txt and adapt setup.py
+    * add test for roundtripping
+
+
+
 * **0.0.1**
     * rewrite notebooks/pyramidi_integration.ipynb
     * use new notebooks/test_midi_file.mid
