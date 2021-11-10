@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 miditapyr/__init__.py
@@ -8,3 +9,4 @@ miditapyr.egg-info/dependency_links.txt
 miditapyr.egg-info/not-zip-safe
 miditapyr.egg-info/requires.txt
 miditapyr.egg-info/top_level.txt
+miditapyr/data/test_midi_file.mid
