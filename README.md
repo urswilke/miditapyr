@@ -36,7 +36,7 @@ Documentation can be found [here](https://miditapyr.readthedocs.io/)
 
 ## Usage example
 
-A usage example is shown in a [jupyter notebook in this repo](https://miditapyr.readthedocs.io/en/latest/pyramidi_integration.html)
+A jupyter notebook [usage example](https://miditapyr.readthedocs.io/en/latest/notebooks/usage_example.html) is shown in the documentation and can also be downloaded [from the repo](https://github.com/urswilke/miditapyr/blob/master/docs/source/notebooks/usage_example.ipynb).
 
 
 ## Release History
