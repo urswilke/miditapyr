@@ -13,6 +13,15 @@ miditapyr.mido\_io module
    :show-inheritance:
 
 
+miditapyr.midi\_frame module
+----------------------------
+
+.. automodule:: miditapyr.midi_frame
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 Module contents
 ---------------
 

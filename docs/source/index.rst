@@ -13,6 +13,8 @@ Welcome to miditapyr's documentation!
    intro
 
    notebooks/usage_example
+   
+   notebooks/midi_frame_usage
 
    miditapyr
 
