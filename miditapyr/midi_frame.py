@@ -8,6 +8,7 @@ class MidiFrame():
     Then the data is translated to dataframes with midi_to_df(), tidy_df() 
     and compact_df() and written back to a midi file if out_file_string is provided.
     The intermediate result of tidy_df() can be manipulated with mod_fun (of provided).
+
     :param midi_file_string: String containing the path to the input midi file.
     :param mod_fun: Function object to manipulate the intermediate result of tidy_df().
     :param out_file_string: String containing the path to the output midi file.
