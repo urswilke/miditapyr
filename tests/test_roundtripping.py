@@ -9,8 +9,8 @@ dft0 = mt.unnest_midi(dfc0)
 dfc1 = mt.nest_midi(dft0, True)
 dft1 = mt.unnest_midi(dfc1)
 
-def test_unnested_compact_roundtripping():
-    # test that from unnested -> compact -> back to unnested results in the same
+def test_unnested_nested_roundtripping():
+    # test that from unnested -> nested -> back to unnested results in the same
     # dataframe:
     assert dft0.equals(dft1)
 
