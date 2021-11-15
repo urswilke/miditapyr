@@ -9,8 +9,8 @@ dft0 = mt.unnest_midi(dfc0)
 dfc1 = mt.nest_midi(dft0, True)
 dft1 = mt.unnest_midi(dfc1)
 
-def test_tidy_compact_roundtripping():
-    # test that from tidy -> compact -> back to tidy results in the same
+def test_unnested_compact_roundtripping():
+    # test that from unnested -> compact -> back to unnested results in the same
     # dataframe:
     assert dft0.equals(dft1)
 
@@ -18,7 +18,7 @@ def test_tidy_compact_roundtripping():
 
 def test_save_read_roundtripping(tmp_path):
     # test that for a midifile saved and read in by miditapyr ('dfc2'), saving
-    # and reloading by miditapyr results in equal dataframes (in tidy
+    # and reloading by miditapyr results in equal dataframes (in unnested
     # format).
     d = tmp_path / "sub"
     filename2 = 'temp_midifile' + '2' + '.mid'
