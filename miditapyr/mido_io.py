@@ -5,19 +5,19 @@ import os, sys
 
 def midi_to_df(mid):
     """Function to create a dataframe containing the
-    information parsed by mido.MidiFile()
+    information parsed by :class:`~mido.MidiFile`
 
-    :param mid: object returned by mido.MidiFile()
-    :type mid: mido.MidiFile
+    :param mid: object of class :class:`~mido.MidiFile`
+    :type mid: :class:`~mido.MidiFile`
 
     :return: a dataframe, containing 3 columns:
-    :rtype: pandas.DataFrame
+    :rtype: :class:`~pandas.DataFrame`
 
-    The function :func:`miditapyr.mido_io.compact_df` returns a
+    The function :func:`~miditapyr.mido_io.compact_df` returns a
     dataframe of the same format. This dataframe contains these columns:
 
         * **i_track**: the track number
-        * **msg**: the (meta) event information read by `mido.MidiFile() <https://mido.readthedocs.io/en/latest/midi_files.html#>`_ in a list of dictionaries
+        * **msg**: the (meta) event information in :class:`~mido.MidiFile` in a list of dictionaries
         * **meta**: whether the event in 'msg' is a `mido meta event <https://mido.readthedocs.io/en/latest/midi_files.html#meta-messages>`_
 
     """
@@ -33,19 +33,19 @@ def midi_to_df(mid):
 
 def tidy_df(dfc):
     """
-    Function to transform the dataframe returned by midi_to_df() in a tidy
+    Function to transform the dataframe returned by :func:`~tidy_df` in a tidy
     format (cf. https://r4ds.had.co.nz/tidy-data.html)
 
-    :param dfc: Dataframe returned by midi_to_df
+    :param dfc: Dataframe returned by :func:`~midi_to_df`
 
-    :type dfc: pandas.DataFrame
+    :type dfc: :class:`~pandas.DataFrame`
 
     :return: a dataframe
-    :rtype: pandas.DataFrame
+    :rtype: :class:`~pandas.DataFrame`
 
-    The returned dataframe with the columns i_track and meta of midi_to_df. The
+    The returned dataframe with the columns i_track and meta of :func:`~tidy_df`. The
     msg column is exploded and each key in the dicts in the `msg` column of
-    :func:`miditapyr.mido_io.midi_to_df` is stored in its own column.
+    :func:`~miditapyr.mido_io.midi_to_df` is stored in its own column.
 
     """
 
@@ -57,10 +57,10 @@ def tidy_df(dfc):
 
 def split_df(df):
     """Function to create a tuple of 2 dataframes containing the
-    information parsed by mido.MidiFile()
+    information in :class:`~mido.MidiFile`
 
-    :param df: dataframe returned by tidy_df()
-    :type dfc: pandas.DataFrame
+    :param df: dataframe returned by :func:`~tidy_df`
+    :type dfc: :class:`~pandas.DataFrame`
 
     :return: a tuple of 2 dataframes, containing the meta / note information
     :rtype: tuple """
@@ -71,12 +71,12 @@ def split_df(df):
 
 def df_to_midi(dfc, ticks_per_beat, filename):
     """
-    Function to write midi dataframes returned by midi_to_df() back to a midi
+    Function to write midi dataframes returned by :func:`~compact_df` back to a midi
     file
 
-    :param dfc: dataframe containing the meta event information returned by midi_to_df
-    :type dfc: pandas.DataFrame
-    :param ticks_per_beat: integer containing the ticks_per_beat information returned by mido.MidiFile
+    :param dfc: dataframe containing the meta event information returned by :func:`~tidy_df`
+    :type dfc: :class:`~pandas.DataFrame`
+    :param ticks_per_beat: integer containing the ticks_per_beat information in :class:`~mido.MidiFile`
     :type ticks_per_beat: integer
     :param filename: string containing the name of the midi file to be written
     :type filename: string
@@ -97,20 +97,20 @@ def df_to_midi(dfc, ticks_per_beat, filename):
 
 def compact_df(df, repair_reticulate_conversion = False):
     """
-    Function to transform the dataframe returned by tidy_df() back to a format
-    as in the result of midi_to_df()
+    Function to transform the dataframe returned by :func:`~tidy_df` back to a format
+    as in the result of :func:`~tidy_df`
 
-    :param df: Dataframe returned by tidy_df()
-    :type dfc: pandas.DataFrame
+    :param df: Dataframe returned by :func:`~tidy_df`
+    :type dfc: :class:`~pandas.DataFrame`
 
     :return: a dataframe, containing 3 columns
-    :rtype: pandas.DataFrame
+    :rtype: :class:`~pandas.DataFrame`
 
     The function :func:`miditapyr.mido_io.midi_to_df` returns a
     dataframe of the same format. This dataframe contains these columns:
 
         * **i_track**: the track number
-        * **msg**: the (meta) event information read by `mido.MidiFile() <https://mido.readthedocs.io/en/latest/midi_files.html#>`_ in a list of dictionaries
+        * **msg**: the (meta) event information in :class:`~mido.MidiFile` `(see here) <https://mido.readthedocs.io/en/latest/midi_files.html#>`_ in a list of dictionaries
         * **meta**: whether the event in 'msg' is a `mido meta event <https://mido.readthedocs.io/en/latest/midi_files.html#meta-messages>`_
 
     """

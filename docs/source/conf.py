@@ -31,10 +31,17 @@ release = '0.0.3'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "nbsphinx", 
+    'nbsphinx', 
     'sphinx.ext.autodoc',
+    # from here https://kevin.burke.dev/kevin/sphinx-interlinks/
+    'sphinx.ext.intersphinx',
     ]
-
+# Add mappings
+intersphinx_mapping = {
+    'mido': ('https://mido.readthedocs.io/en/latest', None),
+    'pandas': ('http://pandas.pydata.org/pandas-docs/dev', None),
+    'python': ('http://docs.python.org/3', None),
+}
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

@@ -5,11 +5,12 @@ from mido import MidiFile
 # this also triggers an update of the observing class MidiFrameCompact
 # (observer pattern inspired by https://en.wikipedia.org/wiki/Observer_pattern#Python)
 class MidiFrameTidy:
-    """Class containing the dataframe midi_frame_tidy. 
+    """Class containing the :class:`~pandas.DataFrame` :obj:`midi_frame_tidy`. 
     
-    midi_frame_tidy can be updated with update_tidy_mf. 
-    This also triggers an update of objects of the observing class MidiFrameCompact.
-    :param midi_frame_raw: Dataframe resulting of mido_io.midi_to_df().
+    :obj:`midi_frame_tidy` can be updated with :meth:`update_tidy_mf`. 
+    This also triggers an update of objects of the observing class :class:`MidiFrameCompact`.
+
+    :param midi_frame_raw: :class:`~pandas.DataFrame` resulting of :func:`~mido_io.midi_to_df`.
     """
     def __init__(self, midi_frame_raw):
         self._observers = []
@@ -25,12 +26,12 @@ class MidiFrameTidy:
 
 
 class MidiFrameCompact:
-    """Class containing the the dataframe midi_frame_compact observing the MidiFrameTidy class.
+    """Class containing the :class:`~pandas.DataFrame` :obj:`midi_frame_compact` observing an object of  :class:`MidiFrameTidy`.
 
-    When midi_frame_tidy is updated with update_tidy_mf, midi_frame_compact 
-    is also automatically updated with update_mf_compact.
+    When the observed object :obj:`midi_frame_tidy` is updated with :meth:`MidiFrameTidy.update_tidy_mf`, :obj:`midi_frame_compact`
+    is also automatically updated with :meth:`MidiFrameCompact.update_mf_compact`.
 
-    :param midi_frame_tidy: Dataframe resulting of mido_io.tidy_df().
+    :param midi_frame_tidy: :class:`~pandas.DataFrame` resulting of :func:`~miditapyr.mido_io.tidy_df`.
     """
     def __init__(self, midi_frame_tidy):
         midi_frame_tidy.register_observer(self)
@@ -47,21 +48,23 @@ class MidiFrameCompact:
 
 class MidiFrames(object):
     """
-    Structure that reads in a midi file and stores it as a mido.MidiFile. 
+    Structure that reads in a midi file and has the following attributes:
     
-    Then the data is translated to a dataframe with midi_to_df(), midi_frame_tidy, an object of class 
-    MidiFrameTidy (resulting of tidy_df()), and midi_frame_compact, an object of class MidiFrameCompact
-    (resulting of compact_df()). These two objects store the dataframes as one of their 
-    attributes.
-    The midi_frame_tidy.midi_frame_tidy can be manipulated with the method update_tidy_mf.
-    This also triggers an update of midi_frame_compact.midi_frame_compact with the method update_mf_compact.
+    * :attr:`midi_file`: The midi data as a :class:`~mido.MidiFile` object.
+    * :attr:`midi_frame_raw`:  :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.midi_to_df`.
+    * :attr:`midi_frame_tidy`:  :class:`~miditapyr.midi_frame.MidiFrameTidy` object (contains :obj:`midi_frame_tidy.midi_frame_tidy`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.tidy_df`).
+    * :attr:`midi_frame_compact`: :class:`~miditapyr.midi_frame.MidiFrameCompact` object (contains :obj:`midi_frame_compact.midi_frame_compact`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.compact_df`).
+    * :meth:`~MidiFrames.write_file`: Writes back the midi data to a midi file.
     
-    When update_tidy_mf was not called, the attricute midi_frame_compact.midi_frame_compact should be
-    identical to midi_frame_raw. After calling update_tidy_mf, midi_frame_compact.midi_frame_compact
-    should also contain the changes made to midi_frame_tidy.midi_frame_tidy.
+    The dataframe :attr:`midi_frame_tidy.midi_frame_tidy` can be manipulated with the method :meth:`~miditapyr.midi_frame.MidiFrameTidy.update_tidy_mf`.
+    This also triggers an update of the dataframe :obj:`midi_frame_compact.midi_frame_compact` with the method :func:`~miditapyr.midi_frame.MidiFrameCompact.update_mf_compact`.
+    
+    When :func:`~miditapyr.midi_frame.MidiFrameTidy.update_tidy_mf` was not called, the attribute :obj:`midi_frame_compact.midi_frame_compact` should be
+    identical to :obj:`midi_frame_raw`. After calling :func:`~miditapyr.midi_frame.MidiFrameTidy.update_tidy_mf`, :obj:`midi_frame_compact.midi_frame_compact`
+    should also contain the changes made to :obj:`midi_frame_tidy.midi_frame_tidy`.
 
 
-    You can write back the midi data to a midi file by calling the method write_file.
+    You can write back the midi data to a midi file by calling the method :meth:`~MidiFrames.write_file`.
 
     :param midi_file_string: String containing the path to the input midi file.
     """
