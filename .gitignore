@@ -36,3 +36,5 @@ share/python-wheels/
 *.egg
 MANIFEST
 *.wav
+
+CHANGELOGmod.md
