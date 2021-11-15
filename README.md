@@ -34,9 +34,13 @@ If you are an R user check out the related R package [pyramidi](https://github.c
 
 Documentation can be found [here](https://miditapyr.readthedocs.io/)
 
-## Usage example
+## Usage 
 
-A jupyter notebook [usage example](https://miditapyr.readthedocs.io/en/latest/notebooks/usage_example.html) is shown in the documentation and can also be downloaded [from the repo](https://github.com/urswilke/miditapyr/blob/master/docs/source/notebooks/usage_example.ipynb).
+miditapyr provides a `MidiFrame` class. A [jupyter notebook how to use this class](https://miditapyr.readthedocs.io/en/latest/notebooks/midi_frame_usage.html) is shown in the documentation.
+
+The low-level functions which this class uses are demonstrated in a notebook for [functions usage](https://miditapyr.readthedocs.io/en/latest/notebooks/functions_usage.html). 
+
+These notebooks can also be downloaded [from the repo](https://github.com/urswilke/miditapyr/blob/master/docs/source/notebooks/).
 
 
 ## Release History

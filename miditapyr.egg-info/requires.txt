@@ -1,4 +1,0 @@
-mido
-pandas
-numpy
-pytest
