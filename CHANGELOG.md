@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+* **0.0.3**
+    * add MidiFrames class
+    * adapt documentation
+
+
 * **0.0.2**
     * add codecov gh action
     * add ci workflow gh action
