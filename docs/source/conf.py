@@ -22,7 +22,7 @@ copyright = '2021, Urs Wilke'
 author = 'Urs Wilke'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.3'
+release = '0.1'
 
 
 # -- General configuration ---------------------------------------------------
