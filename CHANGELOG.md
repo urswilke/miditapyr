@@ -1,5 +1,22 @@
 ## CHANGELOG
 
+* **0.1**
+    * add dynamic linking to used objects in documentation with sphinx.ext.intersphinx
+    * **Breaking changes**
+        * rename functions:
+            * `midi_to_df()` to `frame_midi()`
+            * `tidy_df()` to `unnest_midi()`
+            * `compact_df()` to `nest_midi()`
+            * `df_to_midi()` to `write_midi()`
+        * rename classes:
+            * `MidiFrameTidy` to `MidiFrameUnnested`
+            * `MidiFrameCompact` to `MidiFrameNested`
+        * rename "tidy" to "unnested"
+        * rename "compact" to "nested"
+        * rename midi_frame_nested.midi_frame_nested to midi_frame_nested.df
+        * rename midi_frame_unnested.midi_frame_unnested to midi_frame_unnested.df
+
+
 * **0.0.3**
     * add MidiFrames class
     * adapt documentation
