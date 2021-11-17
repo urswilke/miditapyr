@@ -1,4 +1,3 @@
 mido
 pandas
-numpy
 pytest

@@ -2,6 +2,7 @@
 
 * **0.1**
     * add dynamic linking to used objects in documentation with sphinx.ext.intersphinx
+    * remove numpy dependency
     * **Breaking changes**
         * rename functions:
             * `midi_to_df()` to `frame_midi()`
