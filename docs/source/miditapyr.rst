@@ -1,4 +1,4 @@
-miditapyr package
+Library reference
 =================
 
 Submodules
