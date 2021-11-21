@@ -50,11 +50,10 @@ class MidiFrames(object):
     """
     Structure that reads in a midi file and has the following attributes:
     
-    * :attr:`midi_file`: The midi data as a :class:`~mido.MidiFile` object.
-    * :attr:`midi_frame_raw`:  :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.frame_midi`.
-    * :attr:`midi_frame_unnested`:  :class:`~miditapyr.midi_frame.MidiFrameUnnested` object (contains :obj:`midi_frame_unnested.df`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.unnest_midi`).
-    * :attr:`midi_frame_nested`: :class:`~miditapyr.midi_frame.MidiFrameNested` object (contains :obj:`midi_frame_nested.df`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.nest_midi`).
-    * :meth:`~MidiFrames.write_file`: Writes back the midi data to a midi file.
+    :ivar `midi_file`: The midi data as a :class:`~mido.MidiFile` object.
+    :ivar `midi_frame_raw`:  :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.frame_midi`.
+    :ivar `midi_frame_unnested`:  :class:`~miditapyr.midi_frame.MidiFrameUnnested` object (contains :obj:`midi_frame_unnested.df`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.unnest_midi`).
+    :ivar `midi_frame_nested`: :class:`~miditapyr.midi_frame.MidiFrameNested` object (contains :obj:`midi_frame_nested.df`, a :class:`~pandas.DataFrame` returned by :func:`~miditapyr.mido_io.nest_midi`).
     
     The dataframe :attr:`midi_frame_unnested.df` can be manipulated with the method :meth:`~miditapyr.midi_frame.MidiFrameUnnested.update_unnested_mf`.
     This also triggers an update of the dataframe :obj:`midi_frame_nested.df` with the method :func:`~miditapyr.midi_frame.MidiFrameNested.update_mf_nested`.
