@@ -33,7 +33,7 @@ def frame_midi(mid):
 
 def unnest_midi(dfc):
     """
-    Function to transform the dataframe returned by :func:`~unnest_midi` in a tidy
+    Function to transform the dataframe returned by :func:`~frame_midi` in a tidy
     format (cf. https://r4ds.had.co.nz/tidy-data.html)
 
     :param dfc: Dataframe returned by :func:`~frame_midi`
