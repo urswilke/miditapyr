@@ -12,15 +12,27 @@ class MidiFrameUnnested:
 
     :param midi_frame_raw: :class:`~pandas.DataFrame` resulting of :func:`~miditapyr.mido_io.frame_midi`.
     """
-    def __init__(self, midi_frame_raw):
+    def __init__(self, midi_frame_raw=None):
         self._observers = []
-        self.df = mido_io.unnest_midi(midi_frame_raw)
+        self._df = None
+
+        if midi_frame_raw is not None:
+            self._df = self.calc_df(midi_frame_raw)
+
+    @property
+    def df(self):
+        if self._df is None:
+            raise Exception('df is None')
+        return self._df
+
+    def calc_df(self, midi_frame_raw):    
+        self._df = mido_io.unnest_midi(midi_frame_raw)
 
     def register_observer(self, observer):
         self._observers.append(observer)
 
     def update_unnested_mf(self, unnested_mf_mod):
-        self.df = unnested_mf_mod
+        self._df = unnested_mf_mod
         for obs in self._observers:
             obs.update_mf_nested(self, unnested_mf_mod)
 
@@ -33,15 +45,27 @@ class MidiFrameNested:
 
     :param midi_frame_unnested: :class:`~pandas.DataFrame` resulting of :func:`~miditapyr.mido_io.unnest_midi`.
     """
-    def __init__(self, midi_frame_unnested):
+    def __init__(self, midi_frame_unnested=None):
         midi_frame_unnested.register_observer(self)
-        self.df = mido_io.nest_midi(
+        self._df = None
+
+        if midi_frame_unnested._df is not None:
+            self._df = self.calc_df(midi_frame_unnested)
+
+    @property
+    def df(self):
+        if self._df is None:
+            raise Exception('df is None')
+        return self._df
+
+    def calc_df(self, midi_frame_unnested):    
+        self._df = mido_io.nest_midi(
             midi_frame_unnested.df, 
             repair_reticulate_conversion = True
         )
 
     def update_mf_nested(self, midi_frame_unnested, unnested_mf_mod):
-        self.df = mido_io.nest_midi(
+        self._df = mido_io.nest_midi(
             unnested_mf_mod, 
             repair_reticulate_conversion = True
         )
@@ -68,10 +92,10 @@ class MidiFrames(object):
     :param midi_file_string: String containing the path to the input midi file.
     """
     def __init__(self, midi_file_string=None):
-        self._midi_file = None
+        self._midi_file = MidiFile()
         self._midi_frame_raw = None
-        self._midi_frame_unnested = None
-        self._midi_frame_nested = None
+        self._midi_frame_unnested = MidiFrameUnnested(None)
+        self._midi_frame_nested = MidiFrameNested(self._midi_frame_unnested) 
 
         if midi_file_string is not None:
             self.calc_attributes(midi_file_string)
@@ -103,8 +127,8 @@ class MidiFrames(object):
     def calc_attributes(self, midi_file_string):    
         self._midi_file = MidiFile(midi_file_string)
         self._midi_frame_raw = mido_io.frame_midi(self.midi_file)
-        self._midi_frame_unnested = MidiFrameUnnested(self.midi_frame_raw)
-        self._midi_frame_nested = MidiFrameNested(self.midi_frame_unnested) 
+        self._midi_frame_unnested.calc_df(self.midi_frame_raw)
+        self._midi_frame_nested.calc_df(self.midi_frame_unnested) 
 
     def write_file(self, out_file_string):
         """Write midi data back to midi file
