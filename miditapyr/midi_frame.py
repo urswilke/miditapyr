@@ -67,11 +67,44 @@ class MidiFrames(object):
 
     :param midi_file_string: String containing the path to the input midi file.
     """
-    def __init__(self, midi_file_string):
-        self.midi_file = MidiFile(midi_file_string)
-        self.midi_frame_raw = mido_io.frame_midi(self.midi_file)
-        self.midi_frame_unnested = MidiFrameUnnested(self.midi_frame_raw)
-        self.midi_frame_nested = MidiFrameNested(self.midi_frame_unnested) 
+    def __init__(self, midi_file_string=None):
+        self._midi_file = None
+        self._midi_frame_raw = None
+        self._midi_frame_unnested = None
+        self._midi_frame_nested = None
+
+        if midi_file_string is not None:
+            self.calc_attributes(midi_file_string)
+
+    @property
+    def midi_file(self):
+        if self._midi_file is None:
+            raise Exception('midi_file is None')
+        return self._midi_file
+    
+    @property
+    def midi_frame_raw(self):
+        if self._midi_frame_raw is None:
+            raise Exception('midi_frame_raw is None')
+        return self._midi_frame_raw
+    
+    @property
+    def midi_frame_unnested(self):
+        if self._midi_frame_unnested is None:
+            raise Exception('midi_frame_unnested is None')
+        return self._midi_frame_unnested
+    
+    @property
+    def midi_frame_nested(self):
+        if self._midi_frame_nested is None:
+            raise Exception('midi_frame_nested is None')
+        return self._midi_frame_nested
+    
+    def calc_attributes(self, midi_file_string):    
+        self._midi_file = MidiFile(midi_file_string)
+        self._midi_frame_raw = mido_io.frame_midi(self.midi_file)
+        self._midi_frame_unnested = MidiFrameUnnested(self.midi_frame_raw)
+        self._midi_frame_nested = MidiFrameNested(self.midi_frame_unnested) 
 
     def write_file(self, out_file_string):
         """Write midi data back to midi file
