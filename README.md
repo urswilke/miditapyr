@@ -36,7 +36,7 @@ Documentation can be found [here](https://miditapyr.readthedocs.io/)
 
 ## Usage 
 
-miditapyr provides a `MidiFrame` class. A [jupyter notebook how to use this class](https://miditapyr.readthedocs.io/en/latest/notebooks/midi_frame_usage.html) is shown in the documentation.
+miditapyr provides a `MidiFrames` class. A [jupyter notebook how to use this class](https://miditapyr.readthedocs.io/en/latest/notebooks/midi_frame_usage.html) is shown in the documentation.
 
 The low-level functions which this class uses are demonstrated in a notebook for [functions usage](https://miditapyr.readthedocs.io/en/latest/notebooks/functions_usage.html). 
 
