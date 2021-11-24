@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+* **0.1.1**
+    * add possibility to create an empty `MidiFrames` object (by just calling `MidiFrames(midi_file_string=None)`).
+
 * **0.1**
     * add dynamic linking to used objects in documentation with sphinx.ext.intersphinx
     * remove numpy dependency
