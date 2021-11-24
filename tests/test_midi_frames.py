@@ -17,9 +17,9 @@ def test_init_empty_and_fill(mfm):
 
 
     with pytest.raises(Exception) as e_info:
-        mfe.midi_file
+        mfe.midi_frame_unnested.df
 
-    assert e_info.value.args[0] == 'midi_file is None'
+    assert e_info.value.args[0] == 'df is None'
 
     mfe.calc_attributes(mid)
 
