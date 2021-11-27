@@ -16,6 +16,8 @@ Welcome to miditapyr's documentation!
 
    notebooks/functions_usage
 
+   notebooks/midi_file_analysis
+
    miditapyr
 
 Indices and tables
