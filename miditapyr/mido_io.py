@@ -135,6 +135,13 @@ def nest_midi(df, repair_reticulate_conversion = False):
 
 
 def get_test_midi_file(as_string=False):
+    """Get the example midi file included in the
+
+    :param as_string: Should the midi file be returned as a file path or as a :class:`~mido.MidiFile` object, defaults to False
+    :type as_string: bool, optional
+    :return: file path or as a :class:`~mido.MidiFile`
+    :rtype: file path or as a :class:`~mido.MidiFile`
+    """
     # midi_file = pkgutil.get_data(__name__, 'data/test_midi_file.mid') mostly
     # inspired by
     # https://stackoverflow.com/questions/5003755/how-to-use-pkgutils-get-data-with-csv-reader-in-python :
@@ -149,3 +156,62 @@ def get_test_midi_file(as_string=False):
         result = midi_file
     return result
     # return midi_file
+
+
+
+
+def split_midi_frame(df_unnested):
+    """
+    Split unnested midi frame into 3 dataframes.
+
+    :param df_unnested: result of :func:`~unnest_midi`
+    :type df_unnested: :class:`~pandas.DataFrame`
+    :returns: (tuple) of 3 dataframes df_meta, df_not_notes & df_notes
+    
+       - :obj:`df_meta` - (containing all mido meta events), 
+       - :obj:`df_not_notes` - (non-meta events that are not :obj:`note_on` or :obj:`note_off`) & 
+       - :obj:`df_notes` - (all :obj:`note_on` or :obj:`note_off` events).
+
+    :rtype: tuple of 3 :class:`~pandas.DataFrame`
+    """
+    df_meta, df_not_meta = split_df(df_unnested)
+
+    is_note_row = df_not_meta.type.str.contains('^note_o[nf]f?$')
+
+    df_notes = df_not_meta[is_note_row]
+    df_not_notes = df_not_meta[~is_note_row]
+
+    return df_meta, df_not_notes, df_notes
+
+def pivot_notes_wide(df_notes):
+    """
+    Write :obj:`note_on` and :obj:`note_off` events in the same line (long to wide)
+
+    :param df_notes: Notes dataframe from :func:`split_midi_frame`
+    :type df_notes: :class:`~pandas.DataFrame`
+    :return: Dataframe with half the number of rows, but the time & velocity columns occur twice for all :obj:`note_on` or :obj:`note_off` events.
+    :rtype: :class:`~pandas.DataFrame`
+    """
+    # calculate absolute time for all events in each track:
+    df_notes['t']=df_notes.groupby(['i_track'])['time'].cumsum()
+    df_notes = df_notes.reset_index()
+    df_notes['i_note'] = df_notes.groupby(['i_track', 'note', 'type']).cumcount()
+
+    index_cols = ['i_track', 'note', 'i_note', 'channel']
+
+    val_cols = ['t', 'velocity']
+
+
+    df_wide = df_notes.pivot(
+        index=index_cols,
+        columns=['type'], 
+        values=val_cols
+    )
+
+    # df_wide.reset_index(inplace=True)
+    df_wide.columns = ['_'.join(col).strip() for col in df_wide.columns.values]
+    df_wide.reset_index(inplace=True)
+
+    # df_wide = pd.DataFrame(df_wide.to_records(index=False))
+
+    return df_wide

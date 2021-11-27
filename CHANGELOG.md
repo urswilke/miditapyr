@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+* **not on pypi yet**
+    * add function `split_midi_frame()`
+    * add function `pivot_notes_wide()`
+
 * **0.1.1**
     * add possibility to create an empty `MidiFrames` object (by just calling `MidiFrames(midi_file_string=None)`).
 
