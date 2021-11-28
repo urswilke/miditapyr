@@ -3,6 +3,9 @@
 * **not on pypi yet**
     * add function `split_midi_frame()`
     * add function `pivot_notes_wide()`
+    * add function `pivot_notes_long()`
+    * add function `add_abs_time()`
+    * add function `merge_midi_frames()`
     * add notebook midi_file_analysis to docs
 
 * **0.1.1**

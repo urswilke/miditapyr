@@ -192,26 +192,108 @@ def pivot_notes_wide(df_notes):
     :return: Dataframe with half the number of rows, but the time & velocity columns occur twice for all :obj:`note_on` or :obj:`note_off` events.
     :rtype: :class:`~pandas.DataFrame`
     """
-    # calculate absolute time for all events in each track:
-    df_notes['t']=df_notes.groupby(['i_track'])['time'].cumsum()
-    df_notes = df_notes.reset_index()
-    df_notes['i_note'] = df_notes.groupby(['i_track', 'note', 'type']).cumcount()
+    df_notes_c = df_notes.copy(deep = True)
+    # # calculate absolute time for all events in each track:
+    # df_notes_c['t']=df_notes_c.groupby(['i_track'])['time'].cumsum()
+    # df_notes_c = df_notes_c.reset_index()
+    df_notes_c['i_note'] = df_notes_c.groupby(['i_track', 'note', 'type']).cumcount()
 
     index_cols = ['i_track', 'note', 'i_note', 'channel']
 
     val_cols = ['t', 'velocity']
 
 
-    df_wide = df_notes.pivot(
+    df_wide = df_notes_c.pivot(
         index=index_cols,
         columns=['type'], 
         values=val_cols
     )
 
-    # df_wide.reset_index(inplace=True)
+    # join 
+    # https://stackoverflow.com/a/33290844
     df_wide.columns = ['_'.join(col).strip() for col in df_wide.columns.values]
     df_wide.reset_index(inplace=True)
 
     # df_wide = pd.DataFrame(df_wide.to_records(index=False))
 
     return df_wide
+
+
+def pivot_notes_long(dfw):
+    """
+    Write :obj:`note_on` and :obj:`note_off` events in two lines (wide to long)
+
+    :param dfw: Transforms notes in wide dataframe format to long format.
+    :type dfw: :class:`~pandas.DataFrame`
+    :return: Dataframe with twice the number of rows, where the time & velocity columns occur in two rows for all :obj:`note_on` or :obj:`note_off` events.
+    :rtype: :class:`~pandas.DataFrame`
+    """
+    dfl = pd.wide_to_long(
+        dfw, 
+        ['t', 'velocity'], 
+        ['i_track', 'note', 'i_note', 'channel'], 
+        'type', 
+        sep = '_', 
+        suffix=r'note_o[nf]f?'
+    ).reset_index().sort_values(['i_track', 't'])
+    # dfl['time'] = dfl.groupby('i_track')['t'].diff().fillna(0).astype(int)
+    dfl['meta'] = False
+    # dfl = dfl.drop(['t', 'i_note'], axis=1)
+    # dfl = dfl[['i_track', 'meta', 'type', 'time', 'note', 'velocity', 'channel']]
+    dfl = dfl.reset_index(drop=True)
+    return dfl
+
+def add_abs_time(df):
+    """
+    Add a column of absolute time
+
+    :param df: unnested midi frame
+    :type df: :class:`~pandas.DataFrame`
+    :return: Dataframe with absolute time column 't' added.
+    :rtype: :class:`~pandas.DataFrame`
+    """
+    df_c = df.copy(deep = True)
+    df_c['t']=df_c.groupby(['i_track'])['time'].cumsum()
+    df_c = df_c.reset_index()
+    return df_c
+
+
+def merge_midi_frames(df_meta, df_not_notes, df_notes):
+    """
+    Merge dataframes resulting of :func:`split_midi_frame`.
+
+      - :obj:`df_meta` - (containing all mido meta events), 
+       - :obj:`df_not_notes` - (non-meta events that are not :obj:`note_on` or :obj:`note_off`) & 
+       - :obj:`df_notes` - (all :obj:`note_on` or :obj:`note_off` events).
+
+    :param df_meta: Contains all mido meta events.
+    :type df_meta: :class:`~pandas.DataFrame`
+    :param df_not_notes: Non-meta events that are not :obj:`note_on` or :obj:`note_off`.
+    :type df_not_notes: :class:`~pandas.DataFrame`
+    :param df_notes: All :obj:`note_on` or :obj:`note_off` events.
+    :type df_notes: :class:`~pandas.DataFrame`
+    :return: unnested midi frame
+    :rtype: :class:`~pandas.DataFrame`
+    """
+    l_dfs = [df_meta, df_not_notes, df_notes]
+
+    midi_fram_mod = pd.concat(l_dfs)
+    midi_fram_mod
+    midi_fram_mod = midi_fram_mod.sort_values(['i_track', 't'])
+    midi_fram_mod['time'] = midi_fram_mod.groupby('i_track')['t'].diff().fillna(0).astype(int)
+    cols = [
+        'i_track',
+        'meta',
+        'type',
+        'name',
+        'time',
+        'tempo',
+        'numerator',
+        'denominator',
+        'clocks_per_click',
+        'notated_32nd_notes_per_beat',
+        'note',
+        'velocity',
+        'channel'
+    ]
+    return midi_fram_mod[cols]    
