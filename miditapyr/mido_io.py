@@ -282,18 +282,18 @@ def merge_midi_frames(df_meta, df_not_notes, df_notes):
     midi_fram_mod = midi_fram_mod.sort_values(['i_track', 't'])
     midi_fram_mod['time'] = midi_fram_mod.groupby('i_track')['t'].diff().fillna(0).astype(int)
     cols = [
-        'i_track',
         'meta',
+        'i_track',
         'type',
         'name',
         'time',
+        'note',
+        'velocity',
+        'channel'
         'tempo',
         'numerator',
         'denominator',
         'clocks_per_click',
         'notated_32nd_notes_per_beat',
-        'note',
-        'velocity',
-        'channel'
     ]
     return midi_fram_mod[cols]    
